@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to right, #3a1c71, #d76d77, #ffaf7b);
+            font-family: Arial, sans-serif;
+        }
+        
+        .music-player {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        
+        .controls {
+            margin-top: 20px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            margin: 0 5px;
+            border: none;
+            background-color: #3a1c71;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #d76d77;
+        }
+        
+        .track-info {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        
+    </style>
+    <title>Music Player</title>
+</head>
+<body>
+    <div class="music-player">
+        <h1>Music Player</h1>
+        <audio id="audio-player" src="Tera_Chehra_-_Sanam_Teri_Kasam_128_Kbps.mp3"></audio>
+        <div class="controls">
+            <button id="prev" class="btn">Previous</button>
+            <button id="play" class="btn">Play</button>
+            <button id="pause" class="btn" style="display:none;">Pause</button>
+            <button id="next" class="btn">Next</button>
+        </div>
+        <div class="track-info">
+            <span id="track-name">Track Name</span>
+        </div>
+    </div>
+    <script>
+        const audioPlayer = document.getElementById('audio-player');
+const playBtn = document.getElementById('play');
+const pauseBtn = document.getElementById('pause');
+const prevBtn = document.getElementById('prev');
+const nextBtn = document.getElementById('next');
+const trackName = document.getElementById('track-name');
+
+const tracks = [
+{ name: "Track 1", src: "pagalworld.com.mx-Mumma Kailash Kher.mp3" },
+// Ensure these file names match your files
+    { name: "Track 2", src: "Saanwali_Si_Ek_Ladki_-_Mujhse_Dosti_Karoge!_128_Kbps.mp3" },
+    { name: "Track 3", src: "Tera_Chehra_-_Sanam_Teri_Kasam_128_Kbps.mp3" }
+];
+
+let currentTrack = 0;
+
+// Load the selected track
+function loadTrack(index) {
+    const track = tracks[index];
+    audioPlayer.src = track.src;
+    trackName.textContent = track.name;
+    console.log(`Loading ${track.name} - ${track.src}`); // Debugging: log the track being loaded
+}
+
+// Play the track
+playBtn.addEventListener('click', () => {
+    if (audioPlayer.src) {
+        audioPlayer.play();
+        playBtn.style.display = 'none';
+        pauseBtn.style.display = 'inline';
+    } else {
+        console.error('Audio source is missing');
+    }
+});
+
+// Pause the track
+pauseBtn.addEventListener('click', () => {
+    audioPlayer.pause();
+    pauseBtn.style.display = 'none';
+    playBtn.style.display = 'inline';
+});
+
+// Previous track
+prevBtn.addEventListener('click', () => {
+    currentTrack = (currentTrack - 1 + tracks.length) % tracks.length;
+    loadTrack(currentTrack);
+    audioPlayer.play();
+    playBtn.style.display = 'none';
+    pauseBtn.style.display = 'inline';
+});
+
+// Next track
+nextBtn.addEventListener('click', () => {
+    currentTrack = (currentTrack + 1) % tracks.length;
+    loadTrack(currentTrack);
+    audioPlayer.play();
+    playBtn.style.display = 'none';
+    pauseBtn.style.display = 'inline';
+});
+
+// Initialize the first track when the page loads
+window.onload = () => {
+    loadTrack(currentTrack);
+};
+
+    </script>
+</body>
+</html>

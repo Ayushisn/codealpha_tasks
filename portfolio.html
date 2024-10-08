@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: #fff;
+}
+
+header {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ff79c6;
+}
+
+section {
+    padding: 50px 20px;
+    margin: 20px auto;
+    max-width: 900px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(50px);
+    opacity: 0;
+    transition: all 0.6s ease-out;
+}
+
+section.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: #fff;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #ffd700;
+}
+/* Custom cursor */
+#custom-cursor {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #ff79c6;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease-out, background-color 0.2s ease;
+}
+
+
+        
+    </style>
+    <title>My Portfolio</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Portfolio</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+<div id="custom-cursor"></div>
+
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p><img src="C:\Users\Admin\OneDrive\文档\ayushi docs\photo.jpg"></p>
+        <p><b>Ayushi, the AI Aspirant</b></p>
+
+            <p>From the vibrant plains of Bihar, Ayushi, a young woman with a bright future, is carving her path in the world of technology. At the tender age of 22, she's already embarked on a journey to master the intricacies of Artificial Intelligence, pursuing her MCA at Parul University. 
+            
+            With a blend of youthful enthusiasm and unwavering determination, Ayushi is not just learning the technical aspects of AI but also exploring its boundless potential. Imagine her coding late into the night, her mind racing with ideas to create innovative solutions that could shape the world. 
+            
+            Ayushi's journey is a testament to the growing number of women in STEM fields. Her passion for AI is a beacon of inspiration, proving that the future of technology is in capable hands. As she continues to learn and grow, we can't wait to see the incredible contributions she'll make to the world of Artificial Intelligence.
+            </p>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <p>Details about your projects.</p>
+    </section>
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <p><li>Python.</li></p>
+        <p><li>JAVA</li></p>
+        <p><li>CSS</li></p>
+        <p><li>HTML</li></p>
+        <p><li>JavaScript</li></p>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <p>Contact Number: 9560210012</p>
+        <p>Email: ayushisinha13@gmail.com</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Ayushi</p>
+    </footer>
+
+    <script>
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+const sections = document.querySelectorAll('section');
+const showSection = () => {
+    sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        if (sectionTop <= window.innerHeight - 150) {
+            section.classList.add('visible');
+        }
+    });
+};
+
+window.addEventListener('scroll', showSection);
+window.addEventListener('load', showSection);
+// Custom Cursor Movement
+const cursor = document.getElementById('custom-cursor');
+document.addEventListener('mousemove', (e) => {
+    cursor.style.left = `${e.pageX}px`;
+    cursor.style.top = `${e.pageY}px`;
+});
+
+
+    </script>
+</body>
+</html>
